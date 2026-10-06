@@ -1,0 +1,4 @@
+﻿services:
+  ctfd:
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
