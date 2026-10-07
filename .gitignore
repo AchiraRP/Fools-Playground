@@ -77,3 +77,6 @@ flags-private/
 # Local backups
 *.bak
 *.backup
+
+# Player-facing FP-05 artifact
+!challenges/FP-05-The-Silent-Network/artifact/silent-network.pcapng
