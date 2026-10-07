@@ -1,0 +1,6 @@
+﻿FOOL'S PLAYGROUND — FINAL INVESTIGATION RECORD
+Stage: FP-06 — The Fool's Domain
+Investigator account: investigator
+Privilege escalation: confirmed
+Final privilege: root
+Case status: RESOLVED
