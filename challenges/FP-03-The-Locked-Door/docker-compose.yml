@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  fp03-locked-door:
+    build: .
+    container_name: fp03-locked-door
+    ports:
+      - "5000:5000"
+    networks:
+      - ctf-network
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+
+networks:
+  ctf-network:
+    driver: bridge
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vault Entry #{{ entry_id }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vault Entry #{{ entry_id }}</h1>
+        <p><strong>Owner:</strong> {{ entry.owner }}</p>
+        <p><strong>Content:</strong> {{ entry.content }}</p>
+
+        {% if entry.file %}
+            <a class="btn" href="/download/{{ entry.file }}">⬇ Download Evidence Package</a>
+        {% endif %}
+
+        <p><a href="/dashboard">← Back to Dashboard</a></p>
+    </div>
+</body>
+</html>
+

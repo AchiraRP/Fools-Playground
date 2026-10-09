@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user }}</h1>
+        <p>Role: <strong>{{ role }}</strong></p>
+
+        <h2>Your Vault Entries</h2>
+        <ul>
+            <li><a href="/vault/1">Entry #1</a></li>
+            <li><a href="/vault/2">Entry #2</a></li>
+        </ul>
+
+        <p class="hint">Something feels incomplete… maybe there are more entries?</p>
+    </div>
+</body>
+</html>
+
