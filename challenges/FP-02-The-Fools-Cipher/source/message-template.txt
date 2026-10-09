@@ -1,0 +1,23 @@
+THE FOOL'S CIPHER - RECOVERED MESSAGE
+
+Investigator,
+
+The invitation gave you the key. Use it to uncover the next stage.
+
+FP-02 FLAG:
+{{FP02_FLAG}}
+
+NEXT INVESTIGATION TARGET:
+URL: {{FP03_URL}}
+Protocol: {{FP03_PROTOCOL}}
+Port: {{FP03_PORT}}
+
+AUTHORIZED INVESTIGATION ACCOUNT:
+Username: {{FP03_USERNAME}}
+Password: {{FP03_PASSWORD}}
+
+Your next task is to inspect the web application and investigate whether its access controls protect every record correctly.
+
+Do not assume that a record is safe merely because the application allows you to open it.
+
+End of recovered message.
