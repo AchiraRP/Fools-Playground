@@ -129,7 +129,7 @@ Use unique values for a self-hosted lab, and keep all private values out of Git.
 
 ## 4. Prepare and run each stage
 
-### FP-01 — The Invitation
+### FP-01 - The Invitation
 
 - Player artifact: `challenges/FP-01-The-Invitation/artifact/invitation.png`
 - Generator: `challenges/FP-01-The-Invitation/source/generate_invitation.py`
@@ -145,14 +145,14 @@ py -3 -m venv .venv
 
 The recovered key/clue feeds FP-02. The generated artifact and CTFd flag must match.
 
-### FP-02 — The Fool's Cipher
+### FP-02 - The Fool's Cipher
 
 - Generator: `challenges/FP-02-The-Fools-Cipher/source/generate_cipher.py`
 - Template: `challenges/FP-02-The-Fools-Cipher/source/message-template.txt`
 - Output: `challenges/FP-02-The-Fools-Cipher/artifact/fools-cipher.txt` (generated locally and ignored by Git)
 - Required local inputs: `flags-private/FP-02.flag` and `flags-private/FP-02-settings.json`.
 - Settings JSON keys: `fp03_url`, `fp03_protocol`, `fp03_port`, `fp03_username`, `fp03_password`.
-- The message layers are inner Base64, Vigenère using the FP-01 key, then outer Base64.
+- The message layers are inner Base64, Vigenere encrypted using the FP-01 key, then outer Base64.
 
 Generate the deployment-specific player artifact after FP-03 has been configured:
 
@@ -162,7 +162,7 @@ py -3 challenges/FP-02-The-Fools-Cipher/source/generate_cipher.py
 
 Upload that generated artifact to the **matching** CTFd instance. Regenerate and re-upload after changing the target address or credentials. Do not commit the generated artifact or the private inputs.
 
-### FP-03 — The Locked Door
+### FP-03 - The Locked Door
 
 FP-03 is an intentionally vulnerable Flask app demonstrating an IDOR weakness. Do not reuse it as a production application or expose it publicly without an isolated, reviewed deployment.
 
@@ -196,14 +196,14 @@ docker ps --filter "name=fp03-locked-door"
 
 The IDOR weakness is intentional: the vault route does not enforce record ownership. Keep this service on a trusted lab network.
 
-### FP-04 — The Forgotten Evidence
+### FP-04 - The Forgotten Evidence
 
 - Prepared package: `challenges/FP-04-The-Forgotten-Evidence/FP-04_The_Forgotten_Evidence_Corrected.zip`
 - Current stage uses a prepared forensic evidence ZIP; no Docker container is needed for the evidence-analysis step.
 - Upload the intended ZIP and configure a matching flag in CTFd. Confirm the handoff indicator agrees with FP-05's PCAP before release.
 - The current repository does not yet provide a general-purpose artifact-generation/deployment script for FP-04.
 
-### FP-05 — The Silent Network
+### FP-05 - The Silent Network
 
 - PCAPNG artifact: `challenges/FP-05-The-Silent-Network/artifact/silent-network.pcapng`
 - Generator: `challenges/FP-05-The-Silent-Network/source/generate_pcap.py`
