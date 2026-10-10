@@ -80,3 +80,6 @@ flags-private/
 
 # Player-facing FP-05 artifact
 !challenges/FP-05-The-Silent-Network/artifact/silent-network.pcapng
+
+# Deployment-specific FP-02 artifact
+/challenges/FP-02-The-Fools-Cipher/artifact/fools-cipher.txt

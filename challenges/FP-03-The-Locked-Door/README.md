@@ -1,4 +1,4 @@
-﻿# FP-03: The Locked Door
+# FP-03: The Locked Door
 
 **Stage:** FP-03
 **Domain:** Web Security
@@ -28,10 +28,9 @@ Local testing URL: http://localhost:5000
 For the integrated CTF, ensure the target address provided by FP-02
 matches the actual address reachable by participants.
 
-## Default Credentials
+## Runtime Credentials
 
-- Username: `investigator`
-- Password: `investigate123`
+Use the investigator credentials supplied through FP-02 for the current deployment. For the solve script, set the FP03_INVESTIGATOR_PASSWORD environment variable or enter the password when prompted. Do not commit deployment credentials to the repository.
 
 ## Reset
 
@@ -45,9 +44,9 @@ Run `docker compose down`, followed by `docker compose up --build -d`.
 
 Run `python3 exploit_fp03.py`.
 
-## Flag
+## Flag Submission
 
-`FP{web_a7x9k2m4}`
+Submit the flag discovered during the challenge through CTFd. The deployment-specific flag is intentionally omitted from this README.
 
 ## Handoff to FP-04
 

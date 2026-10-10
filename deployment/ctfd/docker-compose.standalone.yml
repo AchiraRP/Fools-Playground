@@ -1,0 +1,74 @@
+services:
+  ctfd:
+    image: ctfd/ctfd:3.8.8
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    ports:
+      - "${CTFD_BIND_ADDRESS:-127.0.0.1}:${CTFD_PORT:-8000}:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in the environment file}
+      UPLOAD_FOLDER: /var/uploads
+      DATABASE_URL: "mysql+pymysql://${MYSQL_USER:-ctfd}:${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in the environment file}@db:3306/${MYSQL_DATABASE:-ctfd}"
+      REDIS_URL: redis://cache:6379
+      WORKERS: "1"
+      LOG_FOLDER: /var/log/CTFd
+      ACCESS_LOG: "-"
+      ERROR_LOG: "-"
+      REVERSE_PROXY: "false"
+    volumes:
+      - ctfd_uploads:/var/uploads
+      - ctfd_logs:/var/log/CTFd
+    networks:
+      - ctfd_network
+
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in the environment file}
+      MARIADB_DATABASE: ${MYSQL_DATABASE:-ctfd}
+      MARIADB_USER: ${MYSQL_USER:-ctfd}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in the environment file}
+      MARIADB_AUTO_UPGRADE: "1"
+    command:
+      - mysqld
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --wait_timeout=28800
+    volumes:
+      - ctfd_database:/var/lib/mysql
+    networks:
+      - ctfd_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ctfd_redis:/data
+    networks:
+      - ctfd_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  ctfd_uploads:
+  ctfd_logs:
+  ctfd_database:
+  ctfd_redis:
+
+networks:
+  ctfd_network:
+    driver: bridge

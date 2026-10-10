@@ -1,9 +1,12 @@
-version: '3.8'
 
 services:
   fp03-locked-door:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: fp03-locked-door
+    env_file:
+      - .env
     ports:
       - "5000:5000"
     networks:
@@ -17,4 +20,3 @@ services:
 networks:
   ctf-network:
     driver: bridge
-
